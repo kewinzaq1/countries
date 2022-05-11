@@ -17,7 +17,7 @@ interface Country {
   nativeName: string
   numericCode: string
   population: number
-  region: string
+  region: Region
   regionalBlocs: [string]
   subregion: string
   timezones: string
@@ -40,7 +40,7 @@ type Region =
   | 'Antarctic'
 
 interface Regions {
-  regions: [Region]
+  regions: Region[]
 }
 
-export {Country, Countries, Regions}
+export {Country, Countries, Regions, Region}
