@@ -1,22 +1,31 @@
 import {filter} from 'cypress/types/bluebird'
 import React from 'react'
 import {Input} from '../atoms/Input'
+import {InputBox} from '../atoms/InputBox'
+import {InputBoxWrapper} from '../atoms/InputBoxWrapper'
 
 interface Search extends React.InputHTMLAttributes<HTMLInputElement> {
   autoCompleteData?: string[]
 }
 
 export const Search = ({autoCompleteData, ...rest}: Search) => {
-  console.log('autoCompleteData', autoCompleteData)
   const [suggestion, setSuggestion] = React.useState<null | string[]>(null)
   const [value, setValue] = React.useState('')
-  const handleInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
+
+  const onChangeInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }
-
-  const handleValue = (e: React.SyntheticEvent<HTMLDivElement>) => {
+  const handleSuggestion = (e: React.SyntheticEvent) => {
     e.currentTarget.textContent && setValue(e.currentTarget.textContent)
     setSuggestion(null)
+  }
+  const onChangeSuggestion = (e: React.SyntheticEvent<HTMLDivElement>) => {
+    handleSuggestion(e)
+  }
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleSuggestion(e)
+    }
   }
 
   React.useEffect(() => {
@@ -36,22 +45,21 @@ export const Search = ({autoCompleteData, ...rest}: Search) => {
       <Input
         placeholder="Search for a country..."
         value={value}
-        onChange={handleInput}
+        onChange={onChangeInput}
       />
       {suggestion && (
-        <div className="absolute top-0 left-0 flex flex-col w-full border-2 rounded-sm mt-14">
+        <InputBoxWrapper>
           {suggestion?.map((region: string) => (
-            <div
+            <InputBox
               key={region}
-              onClick={handleValue}
+              onClick={onChangeSuggestion}
+              onKeyDown={onKeyDown}
               tabIndex={0}
-              className="p-4 border-b-2 ring-[2px] ring-transparent
-            focus:ring-slate-700 focus:dark:ring-slate-400 bg-slate-50 dark:bg-slate-700"
             >
               {region}
-            </div>
+            </InputBox>
           ))}
-        </div>
+        </InputBoxWrapper>
       )}
     </div>
   )

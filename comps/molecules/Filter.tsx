@@ -1,13 +1,21 @@
 import * as React from 'react'
 import {BiChevronDown, BiChevronUp} from 'react-icons/bi'
 import {Regions} from '../../utils/models'
+import {InputBox} from '../atoms/InputBox'
+import {InputBoxWrapper} from '../atoms/InputBoxWrapper'
 
 export const Filter = ({regions}: Regions) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [selected, setSelected] = React.useState('')
+  const handleFilter = (e: React.SyntheticEvent) => {
+    e.currentTarget?.textContent && setSelected(e.currentTarget.textContent)
+    setIsOpen(false)
+  }
   const handleOpen = () => setIsOpen(c => !c)
-  const handleSelect = (e: React.MouseEvent<HTMLElement>) =>
-    e.currentTarget.textContent && setSelected(e.currentTarget.textContent)
+  const reset = () => setSelected('')
+  const onClick = (e: React.MouseEvent<HTMLElement>) => handleFilter(e)
+  const onKeyPress = (e: React.KeyboardEvent<HTMLElement>) =>
+    e.key === 'Enter' && handleFilter(e)
 
   return (
     <>
@@ -23,19 +31,19 @@ export const Filter = ({regions}: Regions) => {
           <BiChevronDown className="ml-auto" />
         )}
         {isOpen && (
-          <div className="absolute top-0 left-0 flex flex-col w-full border-2 rounded-sm mt-14">
+          <InputBoxWrapper>
+            <InputBox onClick={reset}>All</InputBox>
             {regions.map((region: string) => (
-              <div
+              <InputBox
                 key={region}
-                onClick={handleSelect}
+                onClick={onClick}
+                onKeyDown={onKeyPress}
                 tabIndex={0}
-                className="p-4 border-b-2 ring-[2px] ring-transparent
-  focus:ring-slate-700 focus:dark:ring-slate-400"
               >
                 {region}
-              </div>
+              </InputBox>
             ))}
-          </div>
+          </InputBoxWrapper>
         )}
       </div>
     </>
