@@ -9,11 +9,12 @@ export const Filter = ({regions}: Regions) => {
   const [selected, setSelected] = React.useState('')
   const handleFilter = (e: React.SyntheticEvent) => {
     e.currentTarget?.textContent && setSelected(e.currentTarget.textContent)
-    setIsOpen(false)
   }
+
   const handleOpen = () => setIsOpen(c => !c)
-  const reset = () => setSelected('')
   const onClick = (e: React.MouseEvent<HTMLElement>) => handleFilter(e)
+  const reset = () => setSelected('')
+
   const onKeyPress = (e: React.KeyboardEvent<HTMLElement>) =>
     e.key === 'Enter' && handleFilter(e)
 
