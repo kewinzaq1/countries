@@ -1,5 +1,6 @@
 import {filter} from 'cypress/types/bluebird'
 import React from 'react'
+import {useCountries} from '../../utils/Context'
 import {Input} from '../atoms/Input'
 import {InputBox} from '../atoms/InputBox'
 import {InputBoxWrapper} from '../atoms/InputBoxWrapper'
@@ -9,6 +10,7 @@ interface Search extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Search = ({autoCompleteData, ...rest}: Search) => {
+  const {countries, setDisplayedCountries} = useCountries()
   const [suggestion, setSuggestion] = React.useState<null | string[]>(null)
   const [value, setValue] = React.useState('')
 
@@ -43,8 +45,23 @@ export const Search = ({autoCompleteData, ...rest}: Search) => {
     }
   }, [autoCompleteData, value])
 
+  React.useEffect(() => {
+    if (value) {
+      const filteredCountries = countries?.filter(
+        country =>
+          country.name.toLowerCase().substring(0, value.length) ===
+          value.toLowerCase(),
+      )
+      if (filteredCountries) {
+        setDisplayedCountries(filteredCountries)
+      }
+    } else {
+      setDisplayedCountries(countries)
+    }
+  }, [countries, value, setDisplayedCountries])
+
   return (
-    <div className="relative z-50">
+    <div className="relative z-[51]">
       <Input
         placeholder="Search for a country..."
         value={value}

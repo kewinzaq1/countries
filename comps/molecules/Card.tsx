@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import {Country} from '../../utils/models'
 
@@ -20,9 +21,11 @@ export const Card = ({
           className="rounded-t"
         />
       </div>
-      <div className="flex flex-col p-2 mt-2">
-        <p className="mb-3 text-lg font-semibold">{name}</p>
-        <p className="text-sm">
+      <div className="flex flex-col p-4 px-5 mt-2">
+        <Link href={`/country/${name}`}>
+          <p className="mb-3 text-xl font-semibold">{name}</p>
+        </Link>
+        <p>
           <span className="font-semibold">Population: </span>
           {population}
         </p>

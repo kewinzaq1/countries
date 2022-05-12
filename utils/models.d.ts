@@ -44,8 +44,10 @@ interface Regions {
 }
 
 interface Context {
+  displayedCountries: Country[] | null
   countries: Country[] | null
   setCountries: React.Dispatch<React.SetStateAction<Country[] | null>>
+  setDisplayedCountries: React.Dispatch<React.SetStateAction<Country[] | null>>
 }
 
 export {Country, Countries, Regions, Region, Context}

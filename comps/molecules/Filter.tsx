@@ -1,10 +1,12 @@
 import * as React from 'react'
 import {BiChevronDown, BiChevronUp} from 'react-icons/bi'
+import {useCountries} from '../../utils/Context'
 import {Regions} from '../../utils/models'
 import {InputBox} from '../atoms/InputBox'
 import {InputBoxWrapper} from '../atoms/InputBoxWrapper'
 
 export const Filter = ({regions}: Regions) => {
+  const {countries, setDisplayedCountries} = useCountries()
   const [isOpen, setIsOpen] = React.useState(false)
   const [selected, setSelected] = React.useState('')
   const handleFilter = (e: React.SyntheticEvent) => {
@@ -21,6 +23,19 @@ export const Filter = ({regions}: Regions) => {
       setIsOpen(false)
     }
   }
+
+  React.useEffect(() => {
+    if (selected) {
+      const filteredCountries = countries?.filter(
+        countries => countries.region.toLowerCase() === selected.toLowerCase(),
+      )
+      if (filteredCountries) {
+        setDisplayedCountries(filteredCountries)
+      }
+    } else {
+      setDisplayedCountries(countries)
+    }
+  }, [countries, selected, setDisplayedCountries])
 
   return (
     <>
