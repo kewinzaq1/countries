@@ -1,12 +1,5 @@
 <h4 align="center">Countries</h4>
 
-<p align="center">
-  <a >
-    <img src=""
-         alt="Screenshot">
-  </a>
-</p>
-
 ## Project Overview 🎉
 
 I created this project from an idea from frontendmentor.io. From me, I added
@@ -29,8 +22,8 @@ are styled in TailwindCSS.
 
 ## Available scripts
 
-| Command         | Description            |     |
-| --------------- | ---------------------- | --- |
-| `npm run dev`   | Open local server      |     |
-| `npm run build` | Create optimized build |     |
-| `npm run start` | Start optimized build  |     |
+| Command         | Description            |   
+| --------------- | ---------------------- | 
+| `npm run dev`   | Open local server      |    
+| `npm run build` | Create optimized build |    
+| `npm run start` | Start optimized build  |    
