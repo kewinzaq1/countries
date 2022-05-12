@@ -76,7 +76,8 @@ export const Search = ({autoCompleteData, ...rest}: Search) => {
               onKeyDown={onKeyDown}
               tabIndex={0}
             >
-              {region}
+              <b>{region.slice(0, value.length)}</b>
+              {region.slice(value.length)}
             </InputBox>
           ))}
         </InputBoxWrapper>
