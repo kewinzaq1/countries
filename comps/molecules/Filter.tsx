@@ -27,7 +27,7 @@ export const Filter = ({regions}: Regions) => {
       <div
         onClick={handleOpen}
         tabIndex={0}
-        className="relative w-full h-full p-3 bg-transparent border-2 rounded-sm ring-[2px] ring-transparent outline-none group focus:ring-slate-700 focus:dark:ring-slate-400 flex items-center cursor-pointer"
+        className="relative w-full h-full p-3 bg-transparent border-2 rounded-sm ring-[2px] ring-transparent outline-none group focus:ring-slate-700 focus:dark:ring-slate-400 flex items-center cursor-pointer z-50"
       >
         {Boolean(selected) ? selected : 'Filter by Region'}
         {isOpen ? (

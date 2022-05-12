@@ -38,10 +38,13 @@ export const Search = ({autoCompleteData, ...rest}: Search) => {
         setSuggestion(filteredSuggestion)
       }
     }
+    if (!value.length) {
+      setSuggestion(null)
+    }
   }, [autoCompleteData, value])
 
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <Input
         placeholder="Search for a country..."
         value={value}
