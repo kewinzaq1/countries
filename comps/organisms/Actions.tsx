@@ -1,15 +1,18 @@
 import React from 'react'
-import {Countries, Region, Regions} from '../../utils/models'
+import {useCountries} from '../../utils/Context'
+import {Region} from '../../utils/models'
 import {Filter} from '../molecules/Filter'
 import {Search} from '../molecules/Search'
 
-export const Actions = ({countries}: Countries) => {
+export const Actions = () => {
+  const {countries} = useCountries()
+
   const regions: Region[] = [
-    ...new Set(countries.map(country => country.region)),
+    ...new Set(countries?.map(country => country.region)),
   ]
 
   const countriesNames: string[] = [
-    ...new Set(countries.map(country => country.name)),
+    ...new Set(countries?.map(country => country.name)),
   ]
 
   return (

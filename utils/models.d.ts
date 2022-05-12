@@ -26,7 +26,7 @@ interface Country {
 }
 
 interface Countries {
-  countries: [Country]
+  countries: Country[]
 }
 
 type Region =
@@ -43,4 +43,9 @@ interface Regions {
   regions: Region[]
 }
 
-export {Country, Countries, Regions, Region}
+interface Context {
+  countries: Country[] | null
+  setCountries: React.Dispatch<React.SetStateAction<Country[] | null>>
+}
+
+export {Country, Countries, Regions, Region, Context}

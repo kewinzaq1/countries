@@ -15,8 +15,12 @@ export const Filter = ({regions}: Regions) => {
   const onClick = (e: React.MouseEvent<HTMLElement>) => handleFilter(e)
   const reset = () => setSelected('')
 
-  const onKeyPress = (e: React.KeyboardEvent<HTMLElement>) =>
-    e.key === 'Enter' && handleFilter(e)
+  const onKeyDownBox = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === 'Enter') {
+      handleFilter(e)
+      setIsOpen(false)
+    }
+  }
 
   return (
     <>
@@ -38,7 +42,7 @@ export const Filter = ({regions}: Regions) => {
               <InputBox
                 key={region}
                 onClick={onClick}
-                onKeyDown={onKeyPress}
+                onKeyDown={onKeyDownBox}
                 tabIndex={0}
               >
                 {region}
