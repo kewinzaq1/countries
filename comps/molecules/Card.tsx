@@ -23,7 +23,7 @@ export const Card = ({
       </div>
       <div className="flex flex-col p-4 px-5 mt-2">
         <Link href={`/country/${name}`}>
-          <p className="mb-3 text-xl font-semibold">{name}</p>
+          <p className="mb-3 text-xl font-semibold cursor-pointer">{name}</p>
         </Link>
         <p>
           <span className="font-semibold">Population: </span>
