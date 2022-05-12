@@ -12,7 +12,7 @@ const Country = ({country}: {country: CountryModel}) => {
     <main className="bg-slate-100 dark:bg-slate-800 min-h-[calc(100vh-70px)] w-full text-slate-700 dark:text-slate-50 p-4 flex items-center flex-col justify-center">
       <div className="flex flex-col items-center w-full max-w-screen-xl gap-5 mx-auto lg:h-96 lg:flex-row">
         <div className="w-full">
-          <button className="self-start px-6 py-1 mb-10 dark:bg-slate-700 bg-slate-50 dark:text-slate-50 shadow-slate-200 dark:shadow-slate-900">
+          <button className="self-start px-6 py-1 mb-10 shadow-lg dark:bg-slate-700 bg-slate-50 dark:text-slate-50 shadow-slate-200 dark:shadow-slate-900">
             <Link href="/">
               <a className="flex items-center gap-3 ">
                 <BiArrowBack />
@@ -58,7 +58,7 @@ const Country = ({country}: {country: CountryModel}) => {
             </p>
             <p>
               <span className="font-semibold">Currencies: </span>
-              {country.currencies.map((curr, index) => {
+              {country.currencies?.map((curr, index) => {
                 if (index < country.currencies.length - 1) {
                   return curr.name + ','
                 }
@@ -67,7 +67,7 @@ const Country = ({country}: {country: CountryModel}) => {
             </p>
             <p>
               <span className="font-semibold">Languages: </span>
-              {country.languages.map((lang, index) => {
+              {country.languages?.map((lang, index) => {
                 if (index < country.languages.length - 1) {
                   return lang.name + ','
                 }

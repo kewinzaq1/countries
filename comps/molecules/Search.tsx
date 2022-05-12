@@ -66,6 +66,7 @@ export const Search = ({autoCompleteData, ...rest}: Search) => {
         placeholder="Search for a country..."
         value={value}
         onChange={onChangeInput}
+        {...rest}
       />
       {suggestion && (
         <InputBoxWrapper>
