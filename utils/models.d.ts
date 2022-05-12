@@ -6,12 +6,20 @@ interface Country {
   callingCodes: [string]
   capital: string
   cioc: string
-  currencies: [object]
+  currencies: [
+    {
+      name: string
+    },
+  ]
   demonym: string
   flag: string
   flags: string
   independent: boolean
-  languages: [object]
+  languages: [
+    {
+      name: string
+    },
+  ]
   latlng: [number, number]
   name: string
   nativeName: string
@@ -23,6 +31,7 @@ interface Country {
   timezones: string
   topLevelDomain: string
   translations: string
+  borders?: [string]
 }
 
 interface Countries {

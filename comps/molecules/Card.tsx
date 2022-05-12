@@ -33,10 +33,12 @@ export const Card = ({
           <span className="font-semibold">Region: </span>
           {region}
         </p>
-        <p className="text-sm">
-          <span className="font-semibold">Capital: </span>
-          {capital}
-        </p>
+        {Boolean(capital) && (
+          <p className="text-sm">
+            <span className="font-semibold">Capital: </span>
+            {capital}
+          </p>
+        )}
       </div>
     </div>
   )
